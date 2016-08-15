@@ -10,8 +10,8 @@ function handleEffects (effectHandlers) {
     const run = effectHandlers[effectType]
 
     return function (effect, sources) {
-      if (effect.type === effectType) {
-        return run(effect.payload, sources)
+      if (effect === effectType) {
+        return run(effect, sources)
       }
     }
   })
