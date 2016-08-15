@@ -214,15 +214,17 @@ creator returns object of form
 }
 ```
 
-### `inux.run(effect)`
+### `inux.run(effectHandlers)`
 
 creates action objects to run an effect.
 
-corresponding `inux.apps.run` update:
+`effectHandlers` can either be an object or a function. Using an object, the effect type switching is handled by [`inu.handleActions`](https://github.com/ahdinosaur/inux#inuxhandleactionsobject-actionhandlers). Using a function, the signature is the same as in `inu`.
+
+> **Note**: When using an object, the effect handler is receiving just `payload` and not the entire `effect` as when using a function.
 
 ```
 {
-  [RUN]: (model, effect) => ({ model, effect })
+  [RUN]: (payload, sources) => pull.values([{type: 'INCREMENT_BY', payload: payload.incrementBy}])
 }
 ```
 
